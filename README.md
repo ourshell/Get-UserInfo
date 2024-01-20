@@ -1,1 +1,1 @@
-# Get-UserInfo
+Get user statistics from Active Directory
