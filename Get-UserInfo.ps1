@@ -1,12 +1,3 @@
-﻿#-- Name           : Get-UserInfo.ps1
-#-- Requirements   : PowerShell 2.0+, .NET v3.5+, Minimum screen resolution: 1280x800
-#-- Version:       : 1.00 Stable
-#-- Release        : 28.02.2019
-#-- Changes        : Initial release
-#-- Developer	   : Boris Andonov
-#-- License        : GNU General Public License | https://www.gnu.org/licenses/gpl-3.0.html
-#-- Purpose        : Verify user domain activity
-
 <#
 .SYNOPSIS
 Check users details in all domain controllers, force unlock.
@@ -18,7 +9,7 @@ By default the script requires username as an input if no switch is specified.
 Switch "-Export" always appends to existing file.
 
 .Link
-https://ps-solutions.net/index.php/userinfo/
+https://github.com/Slaughtermind/Get-UserInfo/blob/main/Get-UserInfo.ps1
 
 .EXAMPLE
 _
