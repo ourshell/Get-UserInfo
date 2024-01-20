@@ -1,13 +1,11 @@
-﻿#-- Name		: UserInfo.ps1
-#-- Engine		: PowerShell 2.0+, .NET v3.5+, Minimum screen resolution: 1280x800
-#-- Version		: 1.00 Stable
-#-- Date		: 28.02.2019
-#-- Changes		: n/a
-#-- Usage		: Get-Help .\UserInfo.ps1
-#-- Developer	: PS-Solutions.net
-#-- License		: GNU General Public License | http://www.gnu.org/licenses/gpl-2.0.html
-#-- Purpose		: Verify user domain activity
-#-- References	: StackOverflow, Microsoft Blogs, 4SYSOPS, ServerFault
+﻿#-- Name           : Get-UserInfo.ps1
+#-- Requirements   : PowerShell 2.0+, .NET v3.5+, Minimum screen resolution: 1280x800
+#-- Version:       : 1.00 Stable
+#-- Release        : 28.02.2019
+#-- Changes        : Initial release
+#-- Developer	   : Boris Andonov
+#-- License        : GNU General Public License | https://www.gnu.org/licenses/gpl-3.0.html
+#-- Purpose        : Verify user domain activity
 
 <#
 .SYNOPSIS
