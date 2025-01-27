@@ -6,7 +6,7 @@ Usage:
 .\UserInfo.ps1 john.smith@mydomain.com
 .\UserInfo.ps1 john.smith
 .\UserInfo.ps1 "John Smith"
-```PowerShell
+```
 
 **Example Output:**
 
@@ -26,4 +26,4 @@ Modified        : 2025-01-21 17:57:58
 PasswordLastSet : 2024-11-11 14:05:56
 AccountExpires  : Never
 PasswordExpires : 2025-02-09 14:05:56
-```PowerShell
+```
