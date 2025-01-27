@@ -2,8 +2,11 @@ Get user statistics from Active Directory.
 
 Usage:
 .\UserInfo.ps1 john.smith@mydomain.com
+
 .\UserInfo.ps1 john.smith
+
 .\UserInfo.ps1 "John Smith"
+
 
 **Example Output:**
 
