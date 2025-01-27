@@ -1,4 +1,4 @@
-Get user statistics from Active Directory.
+**Get user statistics from Active Directory.**
 
 Usage:
 
@@ -8,7 +8,7 @@ Usage:
 .\UserInfo.ps1 "John Smith"
 ```
 
-**Example Output:**
+Example Output:
 
 ```PowerShell
 DisplayName     : John Smith
