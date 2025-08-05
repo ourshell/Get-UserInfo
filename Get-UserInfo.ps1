@@ -73,7 +73,7 @@ Write-Host "Get Basic Domain Info . . .`r`n"
 $DomainInfo = Get-ADDomain -Server $Server
 $ForestInfo = Get-ADForest -Server $Server
 
-$DCs = $DomainInfo.ReplicaDirectoryServers + "fake2" + $DomainInfo.ReadOnlyReplicaDirectoryServers
+$DCs = $DomainInfo.ReplicaDirectoryServers + $DomainInfo.ReadOnlyReplicaDirectoryServers
 
 $TotalDCs = $dcs.Count
 $PrimaryDC = $DomainInfo.PDCEmulator
@@ -109,9 +109,9 @@ foreach ($dc in $DCs) {
     Catch {
         $Collection += [PSCustomObject]@{
             Server          = $dc.Split(".")[0]
-            DisplayName     = "Error"
+            # DisplayName     = "Error"
             UserName        = "Error"
-            EmailAddress    = "Error"
+            # EmailAddress    = "Error"
             Enabled         = "Error"
             Locked          = "Error"
             BadPass         = "Error"
@@ -149,9 +149,9 @@ foreach ($dc in $DCs) {
 
     $Collection += [PSCustomObject]@{
         Server          = $dc.Split(".")[0]
-        DisplayName     = $query.DisplayName
+        # DisplayName     = $query.DisplayName
         UserName        = $query.SamAccountName
-        EmailAddress    = $query.EmailAddress
+        # EmailAddress    = $query.EmailAddress
         Enabled         = $query.Enabled
         Locked          = $query.LockedOut
         BadPass         = $query.badPwdCount
@@ -159,10 +159,10 @@ foreach ($dc in $DCs) {
         LockoutTime     = if (-not $query.lockoutTime) {""} elseif ($query.lockoutTime -eq 9223372036854775807) {"Unknown"} else { [datetime]::FromFileTimeUtc($query.lockoutTime).ToLocalTime() }
         BadPassTime     = if (-not $query.badPasswordTime) {""} elseif($query.badPasswordTime -eq 9223372036854775807) {"Unknown"} else { [datetime]::FromFileTimeUtc($query.badPasswordTime).ToLocalTime() }
         LastLogon       = if (-not $query.lastLogon) {""} elseif ($query.lastLogon -eq 9223372036854775807) {"Unknown"} else { [datetime]::FromFileTimeUtc($query.lastLogon).ToLocalTime() }
-        Created         = $query.Created
+        # Created         = $query.Created
         Modified        = $query.Modified # Derived from 'whenChanged', already in local time
         PasswordLastSet = if (-not $query.PasswordLastSet) {""} else { $query.PasswordLastSet }
-        AccountExpires  = if (-not $query.accountExpires) {"Expired"} elseif ($query.accountExpires -eq 9223372036854775807) {"Never"} else { [datetime]::FromFileTimeUtc($query.accountExpires).ToLocalTime() }
+        # AccountExpires  = if (-not $query.accountExpires) {"Expired"} elseif ($query.accountExpires -eq 9223372036854775807) {"Never"} else { [datetime]::FromFileTimeUtc($query.accountExpires).ToLocalTime() }
         PasswordExpires = if (-not $query.'msDS-UserPasswordExpiryTimeComputed') {"Expired"} elseif($query.'msDS-UserPasswordExpiryTimeComputed' -eq 9223372036854775807) {"Never"} else { [datetime]::FromFileTimeUtc($query.'msDS-UserPasswordExpiryTimeComputed').ToLocalTime() }
     }
 }
@@ -196,13 +196,13 @@ $UserInfo = [PSCustomObject]@{
 $Width = $Host.UI.RawUI.BufferSize.Width
 $Height = $Host.UI.RawUI.BufferSize.Height
 
-$Host.UI.RawUI.BufferSize = New-Object Management.Automation.Host.Size(1024, $Height)
+#$Host.UI.RawUI.BufferSize = New-Object Management.Automation.Host.Size(1024, $Height)
 
 $output = $Collection | Format-Table -Property * -AutoSize | Out-String
 $MaxWidth = ($output -split "`n" | ForEach-Object { $_.Length } | Measure-Object -Maximum).Maximum + 2
 
 # Set the console buffer width to fit the output
-$Host.UI.RawUI.BufferSize = New-Object Management.Automation.Host.Size([math]::Max($MaxWidth, $Width), $Heigh)
+$Host.UI.RawUI.BufferSize = New-Object Management.Automation.Host.Size([math]::Max($MaxWidth, $Width), $Height)
 
 $Collection | Format-Table -Property * -AutoSize
 
